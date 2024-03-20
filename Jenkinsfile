@@ -19,6 +19,7 @@ pipeline {
             steps {
                 script {
                     // Test addition
+                    sh 'javac calc.java'
                     sh 'java calc.java 10 4 add > result'
                     def result = readFile('result').trim().toDouble()
                     echo "Addition test Result: ${result}" // Print the result along with the message
