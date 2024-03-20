@@ -11,8 +11,6 @@ pipeline {
             steps {
                 sh 'javac Calc.java'
                 sh 'ls'
-                sh 'java --version'
-                sh 'pwd'
             }
         }
         
@@ -22,7 +20,7 @@ pipeline {
                     // Test addition
                     sh 'java Calc 10 4 add > result'
                     def result = readFile('result').trim().toDouble()
-                    echo "Addition test Result: ${result}" // Print the result along with the message
+                    echo "Test Result: ${result}"
                     if (result == 14.0) {
                         echo 'Addition test passed'
                     } else {
@@ -39,6 +37,7 @@ pipeline {
                     // Test subtraction
                     sh 'java Calc 10 5 sub > result'
                     def result = readFile('result').trim().toDouble()
+                    echo "Test Result: ${result}"
                     if (result == 5) {
                         echo 'Subtraction test passed'
                     } else {
@@ -54,6 +53,7 @@ pipeline {
                     // Test multiplication
                     sh 'java Calc 5 5 mul > result'
                     def result = readFile('result').trim().toDouble()
+                    echo "Test Result: ${result}"
                     if (result == 25) {
                         echo 'Multiplication test passed'
                     } else {
@@ -69,6 +69,7 @@ pipeline {
                     // Test division
                     sh 'java Calc 10 5 div > result'
                     def result = readFile('result').trim().toDouble()
+                    echo "Test Result: ${result}"
                     if (result == 2) {
                         echo 'Division test passed'
                     } else {
