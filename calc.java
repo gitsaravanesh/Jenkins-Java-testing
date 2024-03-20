@@ -1,4 +1,4 @@
-public class calc {
+public class Calc {
     public static void main(String[] args) {
         // Checking if the correct number of arguments is provided
         if(args.length != 3) {
