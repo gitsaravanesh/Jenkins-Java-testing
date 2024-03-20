@@ -4,11 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    sh 'git clone 'https://github.com/cloudtechtrainer/B2-Java-Jenkins''
-                    sh 'git checkout main'
-        
-                }
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'cloudtechtrainer', url: 'https://github.com/cloudtechtrainer/B2-Java-Jenkins']])
             }
         }
         stage('Compile') {
