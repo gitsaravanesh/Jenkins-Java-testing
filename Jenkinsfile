@@ -12,11 +12,6 @@ pipeline {
                 sh 'ls'
                 sh 'java --version'
                 sh 'pwd'
-                script {
-                    sh 'java calc.java 10 4 add > result'
-                    def result = readFile('result').trim().toDouble()
-                    echo result
-                }
             }
         }
         
