@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'redbox', url: 'https://github.com/4redbox/java-jenkins-demo.git']])            }
+                sh 'git clone 'https://github.com/cloudtechtrainer/B2-Java-Jenkins''
+                sh 'git checkout main'
         }
         
         stage('Compile') {
