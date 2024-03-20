@@ -20,9 +20,9 @@ pipeline {
             steps {
                 script {
                     // Test addition
-                    sh 'java calc.java 10 5 add > result'
+                    sh 'java calc.java 10 4 add > result'
                     def result = readFile('result').trim().toDouble()
-                    if (result == 15.0) {
+                    if (result == 14.0) {
                         echo 'Addition test passed'
                     } else {
                         echo 'test failed'
@@ -51,9 +51,9 @@ pipeline {
             steps {
                 script {
                     // Test multiplication
-                    sh 'java calc.java 10 5 mul > result'
+                    sh 'java calc.java 5 5 mul > result'
                     def result = readFile('result').trim().toDouble()
-                    if (result == 50) {
+                    if (result == 25) {
                         echo 'Multiplication test passed'
                     } else {
                         error 'Multiplication test failed'
