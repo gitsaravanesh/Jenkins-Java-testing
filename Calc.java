@@ -24,7 +24,7 @@ public class Calc {
                 System.out.println(result);
                 break;
             case "mul":
-                result = num1 * num2;
+                result = num1;
                 System.out.println(result);
                 break;
             case "div":
