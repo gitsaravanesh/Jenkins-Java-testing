@@ -20,8 +20,8 @@ pipeline {
                 script {
                     // Test addition
                     sh 'java calc.java 10 4 add > result'
-                    sh 'output is ${result}'
                     def result = readFile('result').trim().toDouble()
+                    echo "Addition test Result: ${result}" // Print the result along with the message
                     if (result == 14.0) {
                         echo 'Addition test passed'
                     } else {
