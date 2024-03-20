@@ -4,10 +4,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                sh 'git clone 'https://github.com/cloudtechtrainer/B2-Java-Jenkins''
-                sh 'git checkout main'
-        }
+                script {
+                    sh 'git clone 'https://github.com/cloudtechtrainer/B2-Java-Jenkins''
+                    sh 'git checkout main'
         
+                }
+            }
+        }
         stage('Compile') {
             steps {
                 sh 'ls'
