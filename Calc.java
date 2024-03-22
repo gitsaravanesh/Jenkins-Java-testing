@@ -31,7 +31,7 @@ public class Calc {
                 if(num2 == 0) {
                     System.out.println("Error: Division by zero!");
                 } else {
-                    result = num1;
+                    result = num2;
                     System.out.println(result);
                 }
                 break;
