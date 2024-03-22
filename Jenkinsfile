@@ -37,10 +37,10 @@ pipeline {
             steps {
                 script {
                     // Test subtraction
-                    sh 'java Calc 10 5 sub > result'
+                    sh 'java Calc 10 4 sub > result'
                     def result = readFile('result').trim().toDouble()
                     echo "Test Result: ${result}"
-                    if (result == 5) {
+                    if (result == 6) {
                         echo 'Subtraction test passed'
                     } else {
                         error 'Subtraction test failed'
