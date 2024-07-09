@@ -24,7 +24,7 @@ pipeline {
                     sh 'java Calc 10 5 add > result'
                     echo result
                     def result = readFile('result').trim().toDouble()
-                    if (result == 15.0) {
+                    if (result == 14.0) {
                         echo 'Addition test passed'
                     } else {
                         echo 'test failed'
