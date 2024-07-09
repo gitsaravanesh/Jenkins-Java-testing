@@ -16,7 +16,7 @@ public class Calc {
         double result;
         switch(operation) {
             case "add":
-                result = num1 + num2 + 1;
+                result = num1 + num2;
                 System.out.println(result);
                 break;
             case "sub":
