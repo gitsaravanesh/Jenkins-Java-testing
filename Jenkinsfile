@@ -13,7 +13,7 @@ pipeline {
                 sh 'java --version'
                 sh 'pwd'
                 sh 'javac Calc.java'
-                sh 'java Calc 5 10 add'
+                sh 'java Calc 15 10 add'
             }
         }
         
