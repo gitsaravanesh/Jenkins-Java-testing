@@ -4,15 +4,15 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                sh 'java --version'
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'cloudtechtrainer', url: 'https://github.com/cloudtechtrainer/B2-Java-Jenkins']])
-                sh 'ls'
-            }
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'redbox', url: 'https://github.com/4redbox/java-jenkins-demo.git']])            }
         }
+        
         stage('Compile') {
             steps {
-                sh 'javac Calc.java'
                 sh 'ls'
+                sh 'java --version'
+                sh 'pwd'
+                sh 'java calc.java'
             }
         }
         
@@ -20,10 +20,9 @@ pipeline {
             steps {
                 script {
                     // Test addition
-                    sh 'java Calc 10 4 add > result'
+                    sh 'java calc.java 10 5 add > result'
                     def result = readFile('result').trim().toDouble()
-                    echo "Test Result: ${result}"
-                    if (result == 14.0) {
+                    if (result == 15.0) {
                         echo 'Addition test passed'
                     } else {
                         echo 'test failed'
@@ -37,10 +36,9 @@ pipeline {
             steps {
                 script {
                     // Test subtraction
-                    sh 'java Calc 10 4 sub > result'
+                    sh 'java calc.java 10 5 sub > result'
                     def result = readFile('result').trim().toDouble()
-                    echo "Test Result: ${result}"
-                    if (result == 6) {
+                    if (result == 5) {
                         echo 'Subtraction test passed'
                     } else {
                         error 'Subtraction test failed'
@@ -53,10 +51,9 @@ pipeline {
             steps {
                 script {
                     // Test multiplication
-                    sh 'java Calc 5 5 mul > result'
+                    sh 'java calc.java 10 5 mul > result'
                     def result = readFile('result').trim().toDouble()
-                    echo "Test Result: ${result}"
-                    if (result == 25) {
+                    if (result == 50) {
                         echo 'Multiplication test passed'
                     } else {
                         error 'Multiplication test failed'
@@ -69,9 +66,8 @@ pipeline {
             steps {
                 script {
                     // Test division
-                    sh 'java Calc 10 5 div > result'
+                    sh 'java calc.java 10 5 div > result'
                     def result = readFile('result').trim().toDouble()
-                    echo "Test Result: ${result}"
                     if (result == 2) {
                         echo 'Division test passed'
                     } else {
