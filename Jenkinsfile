@@ -23,7 +23,6 @@ pipeline {
                 script {
                     // Test addition
                     sh 'java Calc 10 5 add > result'
-                    sh 'cat result'
                     def result = readFile('result').trim().toDouble()
                     sh 'cat result'
                     if (result == 15.0) {
@@ -72,6 +71,7 @@ pipeline {
                     // Test division
                     sh 'java Calc.java 10 5 div > result'
                     def result = readFile('result').trim().toDouble()
+                    sh 'cat result'
                     if (result == 2) {
                         echo 'Division test passed'
                     } else {
