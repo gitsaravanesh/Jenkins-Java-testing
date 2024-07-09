@@ -12,7 +12,7 @@ pipeline {
                 sh 'ls'
                 sh 'java --version'
                 sh 'pwd'
-                sh 'java calc.java'
+                sh 'java Calc.java'
             }
         }
         
@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Test addition
-                    sh 'java calc.java 10 5 add > result'
+                    sh 'java Calc.java 10 5 add > result'
                     def result = readFile('result').trim().toDouble()
                     if (result == 15.0) {
                         echo 'Addition test passed'
@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                     // Test subtraction
-                    sh 'java calc.java 10 5 sub > result'
+                    sh 'java Calc.java 10 5 sub > result'
                     def result = readFile('result').trim().toDouble()
                     if (result == 5) {
                         echo 'Subtraction test passed'
@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     // Test multiplication
-                    sh 'java calc.java 10 5 mul > result'
+                    sh 'java Calc.java 10 5 mul > result'
                     def result = readFile('result').trim().toDouble()
                     if (result == 50) {
                         echo 'Multiplication test passed'
@@ -66,7 +66,7 @@ pipeline {
             steps {
                 script {
                     // Test division
-                    sh 'java calc.java 10 5 div > result'
+                    sh 'java Calc.java 10 5 div > result'
                     def result = readFile('result').trim().toDouble()
                     if (result == 2) {
                         echo 'Division test passed'
