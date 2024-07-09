@@ -12,7 +12,7 @@ pipeline {
                 sh 'ls'
                 sh 'java --version'
                 sh 'pwd'
-                sh 'java Calc.java'
+                sh 'javac Calc.java'
             }
         }
         
@@ -20,7 +20,8 @@ pipeline {
             steps {
                 script {
                     // Test addition
-                    sh 'java Calc.java 10 5 add > result'
+                    sh 'java Calc 10 5 add > result'
+                    echo result
                     def result = readFile('result').trim().toDouble()
                     if (result == 15.0) {
                         echo 'Addition test passed'
