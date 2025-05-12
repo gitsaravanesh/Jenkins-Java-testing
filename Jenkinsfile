@@ -1,29 +1,35 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'gitcred', url: 'https://github.com/gitsaravanesh/Jenkins-Java-testing.git']])
+                checkout scmGit(
+                    branches: [[name: '*/main']],
+                    extensions: [],
+                    userRemoteConfigs: [[
+                        credentialsId: 'gitcred',
+                        url: 'https://github.com/gitsaravanesh/Jenkins-Java-testing.git'
+                    ]]
+                )
             }
         }
-        
+
         stage('Compile') {
             steps {
-                sh 'ls'
-                sh 'java --version'
-                sh 'pwd'
-                sh 'java Calc.java 15 10 add'
+                bat 'dir'
+                bat 'java -version'
+                bat 'cd' // Just shows current dir on Windows
+                bat 'javac Calc.java'
             }
         }
-        
+
         stage('Test Add') {
             steps {
                 script {
-                    // Test addition
-                    sh 'java Calc.java 10 5 add > result'
-                    def result = readFile('result').trim().toDouble()
-                    sh 'cat result'
+                    bat 'java Calc 10 5 add > result.txt'
+                    def result = readFile('result.txt').trim().toDouble()
+                    bat 'type result.txt'
                     if (result == 15.0) {
                         echo 'Addition test passed'
                     } else {
@@ -33,13 +39,12 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Test Sub') {
             steps {
                 script {
-                    // Test subtraction
-                    sh 'java Calc.java 10 5 sub > result'
-                    def result = readFile('result').trim().toDouble()
+                    bat 'java Calc 10 5 sub > result.txt'
+                    def result = readFile('result.txt').trim().toDouble()
                     if (result == 5) {
                         echo 'Subtraction test passed'
                     } else {
@@ -48,13 +53,12 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Test Mul') {
             steps {
                 script {
-                    // Test multiplication
-                    sh 'java Calc.java 10 5 mul > result'
-                    def result = readFile('result').trim().toDouble()
+                    bat 'java Calc 10 5 mul > result.txt'
+                    def result = readFile('result.txt').trim().toDouble()
                     if (result == 50) {
                         echo 'Multiplication test passed'
                     } else {
@@ -63,14 +67,13 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Test Div') {
             steps {
                 script {
-                    // Test division
-                    sh 'java Calc.java 10 5 div > result'
-                    def result = readFile('result').trim().toDouble()
-                    sh 'cat result'
+                    bat 'java Calc 10 5 div > result.txt'
+                    def result = readFile('result.txt').trim().toDouble()
+                    bat 'type result.txt'
                     if (result == 2) {
                         echo 'Division test passed'
                     } else {
@@ -79,14 +82,14 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Deploy') {
             steps {
                 echo 'No deployment needed'
             }
         }
     }
-    
+
     post {
         always {
             echo 'Pipeline execution completed'
