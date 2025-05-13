@@ -20,7 +20,7 @@ public class Calc {
                 System.out.println(result);
                 break;
             case "sub":
-                result = num1 - num2 + 1;
+                result = num1 - num2;
                 System.out.println(result);
                 break;
             case "mul":
